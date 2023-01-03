@@ -109,32 +109,4 @@ tunnel.on('data', (data) => {
 			break;
 
 	}
-
-	/* Old ugly if else block
-	if (Buffer.from(data.toString('hex').substring(0, 18), 'hex') == 'HOST_PORT') {
-		log(`Virtual host created: ${Buffer.from(data.toString('hex').substring(18, data.toString('hex').length), 'hex')}`, 'Connector');
-	} else if (Buffer.from(data.toString('hex').substring(24, data.toString('hex').length), 'hex') == 'NEW_CLIENT') {
-		if (clients.filter(client => client.id == data.toString('hex').substring(0, 24)) < 1) {
-			clients.push(new VirtualClient(data.toString('hex').substring(0, 24)));
-			log(`New virtual client created: ${Buffer.from(clients[clients.length - 1].id, 'hex').toString('ascii')}`, 'Connector');
-		} else {
-			log(`ERROR: Could not create new client. Client already exist with id: ${Buffer.from(clients[clients.length - 1].id, 'hex').toString('ascii')}`, 'Connector');
-		}
-	} else if (Buffer.from(data.toString('hex').substring(24, data.toString('hex').length), 'hex') == 'CLIENT_LOST') {
-		clients.map(client => {
-			if (client.id == data.toString('hex').substring(0, 24)) {
-				client.socket.destroy();
-			}
-		});
-		clients = clients.filter(client => client.id != data.toString('hex').substring(0, 24));
-	} else {
-		clients.map(client => {
-			if (client.id == data.toString('hex').substring(0, 24)) {
-				client.write(Buffer.from(data.toString('hex').substring(24, data.toString('hex').length), 'hex'));
-			} else {
-				log('Could not find client.', 'Connector');
-			}
-		});
-	}
-	*/
 });
