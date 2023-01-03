@@ -42,7 +42,7 @@ To run Middler Connector: `node src/connector connect [config_arguments]`
 
 ## How it works
 
-![Middler Diagram](https://user-images.githubusercontent.com/18515671/210378000-b024a1a4-c2dc-44b1-a577-c68c1b07d5e5.svg)
+![Middler Diagram](https://user-images.githubusercontent.com/18515671/210441927-bb4e9ddf-9b14-488e-9fe3-3762fefeefc4.png)
 
 It is made of two main layers: Tunnel and Connector. These layers forwarding TCP packets each other. Since it is a bidirectional comminication between Connector and Tunnel; to seperate, determine and process all the different client packets, it uses some prefixes.
 
