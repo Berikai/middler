@@ -29,11 +29,16 @@ It actually seems like it does what ngrok does, but it's not working the same wa
 ## Usage
 
 There are 3 ways to use Middler.
+
  - As an host, you have a local server that you want to make clients connected. Set the config up and run the Middler Connector to connect the Middler Tunnel. Once you connected, you recieve an ip. Share it with your clients to make them connect to your local server.
 
  - As a client, you don't have anything about Middler to be installed! Just connect the host server via the ip Tunnel has given to Connector.
 
  - As a Tunnel provider, set the config up and run the Middler Tunnel. Make sure your ports are working fine.
+
+To run Middler Tunnel: `node src/tunnel start [config_arguments]`
+
+To run Middler Connector: `node src/connector connect [config_arguments]`
 
 ## How it works
 
