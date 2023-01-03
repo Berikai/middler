@@ -1,7 +1,7 @@
 // MADE BY BERIKAI 2023
 // https://github.com/berikai
 
-// Middler Tunnel, is the main server of Middler. It's responsible for creating virtual hosts that represents real hosts. 
+// Middler Tunnel is the main server of Middler. It's responsible for creating virtual hosts that represents real hosts. 
 // Tunnel creates a virtual host once a real host connects to the Tunnel with Middler Connector.
 
 const net = require('net');
@@ -9,9 +9,9 @@ const log = require('./libs/log');
 const ascii_to_hex = require('./libs/ascii_to_hex');
 
 // Tunnel Config
-const config = {
+let config = {
     ip: {
-        tunnel: '192.168.1.8',
+        tunnel: 'localhost',
         virtual_host: 'tcp.middler.io'
     },
     port: {
@@ -19,8 +19,48 @@ const config = {
     },
 };
 
+// Main function
+(function main() {
+    let isStart = false;
+    for (let i = 0; i < process.argv.length; i++) {
+        switch (process.argv[i]) {
+            case "start":
+                isStart = true;
+                break;
+            case "-p":
+                config.port.tunnel = process.argv[i+1];
+                break;
+            case "-h":
+                config.ip.tunnel = process.argv[i+1];
+                break;
+            case "-d":
+                config.ip.virtual_host = process.argv[i+1];
+                break;
+        }
+    }
+
+    if (!isStart) {
+        console.log(
+`Middler Tunnel is the main server of Middler.
+
+Usage: 
+    node src/tunnel [command] [arguments]
+
+Commands:
+    start   Start Middler Tunnel.
+    help    Displays this page.
+
+Arguments:
+    -p      Specify the port for Middler Tunnel to listen.  (default: 51781)
+    -h      Specify the host ip for Middler Tunnel to listen.  (default: localhost)
+    -d      Specify the domain name for Middle Tunnel to be used as VirtualHost hostnames. (default: tcp.middler.io)
+`
+    );
+        process.exit();
+    }
+})();
+
 // HostManager manages the hosts that are connected to the Middler Tunnel with Middler Connector
-// NOTE: I wanted to achieve this "new function()" declaration with arrow functions but there is a potential that I do not understand what are arrow functions really is.
 const HostManager = new function() {
     // Store connected hosts
     this.hosts = [];
@@ -53,7 +93,6 @@ const HostManager = new function() {
 };
 
 // VirtualHost represents the hosts that are connected to Middler Tunnel with Middler Connector
-// NOTE: Arrow function declaration didn't work. Probably arrow functions doesn't support OOP approach. I don't know what is the exact reason but that is the error output: "TypeError: VirtualHost is not a constructor"
 const VirtualHost = function() {
     // Store callback functions
     this.callbacks = {

@@ -14,7 +14,7 @@ const tunnel = new net.Socket();
 // Middler Connector Config
 const config = {
 	ip: {
-		tunnel: '192.168.1.8',
+		tunnel: 'tcp.middler.io',
 		host: 'localhost'
 	},
 	port: {
@@ -23,8 +23,53 @@ const config = {
 	},
 };
 
+// Main function
+(function main() {
+    let isConnect = false;
+    for (let i = 0; i < process.argv.length; i++) {
+        switch (process.argv[i]) {
+            case "connect":
+                isConnect = true;
+                break;
+            case "-p":
+                config.port.tunnel = process.argv[i+1];
+                break;
+            case "-h":
+                config.ip.tunnel = process.argv[i+1];
+                break;
+			case "-lp":
+                config.port.host = process.argv[i+1];
+                break;
+            case "-lh":
+                config.ip.host = process.argv[i+1];
+                break;
+        }
+    }
+
+    if (!isConnect) {
+        console.log(
+`Middler Connector is responsible for creating virtual clients that represents real clients on host's machine.
+
+Usage: 
+    node src/connector [command] [arguments]
+
+Commands:
+    connect     Connect to a Middler Tunnel.
+    help        Displays this page.
+
+Arguments:
+    -p      Specify the port of Middler Tunnel  (default: 51781)
+    -h      Specify the ip of Middler Tunnel  (default: tcp.middler.io)
+    -lp     Specify the local server port for VirtualClients to connect (default: 54323)
+    -lh     Specify the local server ip for VirtualClients to connect.  (default: localhost)
+`
+    );
+        process.exit();
+    }
+})();
+
 // VirtualClient represents the clients that are connected to the Virtual Hosts on Middler Tunnel by simulating them on host's machine.
-const VirtualClient = (id) => {
+const VirtualClient = function(id) {
 	// CLIENT ID IN HEX FORM!
 	this.id = id;
 
