@@ -1,3 +1,6 @@
+// MADE BY BERIKAI 2023
+// https://github.com/berikai
+
 function ascii_to_hex(str) {
 	var arr1 = [];
 	for (var n = 0, l = str.length; n < l; n ++) {
