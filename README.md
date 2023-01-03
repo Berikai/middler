@@ -1,7 +1,7 @@
 <h1 align="center">⚠️THE PROJECT IS UNDER HEAVY DEVELOPMENT!</h1>
 
 <p align="center">
-  <a href="https://www.flaticon.com/authors/dinosoftlabs">
+  <a href="https://github.com/berikai/middler">
     <img alt="logo" src="https://user-images.githubusercontent.com/18515671/210345521-5f448bdd-72dd-42b6-b3b5-34f42530403b.png" width="100" />
   </a>
 </p>
