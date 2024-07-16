@@ -1,14 +1,3 @@
-<h1 align="center">⚠️THE PROJECT IS UNDER HEAVY DEVELOPMENT!</h1>
-
-<p align="center">
-  <a href="https://github.com/berikai/middler">
-    <img alt="logo" src="https://user-images.githubusercontent.com/18515671/210345521-5f448bdd-72dd-42b6-b3b5-34f42530403b.png" width="100" />
-  </a>
-</p>
-
-<div align="center"> Icons made by <a href="https://www.flaticon.com/authors/dinosoftlabs" title="DinosoftLabs">DinosoftLabs</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div><br />
-
-
 <h1 align="center">
   Middler | TCP Client-Host Virtualization Bridge
 </h1>
